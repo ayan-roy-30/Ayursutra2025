@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="version" content="demo-1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panchakarma • Sacred Ayurvedic Healing (Demo)</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            saffron: { 50:'#fefce8',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f' },
+            turmeric: { 50:'#fffbeb',100:'#fef3c7',200:'#fed7aa',300:'#fdba74',400:'#fb923c',500:'#f97316',600:'#ea580c',700:'#c2410c',800:'#9a3412',900:'#7c2d12' },
+            sandalwood: { 50:'#fdf8f6',100:'#f2e8e5',200:'#eaddd7',300:'#e0cfc6',400:'#d2bab0',500:'#bfa094',600:'#a18072',700:'#977669',800:'#846358',900:'#43302b' },
+            earth: { 50:'#fdf4ed',100:'#f7e6d3',200:'#f0d0a6',300:'#e7b474',400:'#dd9441',500:'#d4791f',600:'#b85c0c',700:'#9a4715',800:'#7c3a18',900:'#5c2e12' },
+            forest: { 50:'#f0fdf4',100:'#dcfce7',200:'#bbf7d0',300:'#86efac',400:'#4ade80',500:'#22c55e',600:'#16a34a',700:'#15803d',800:'#166534',900:'#14532d' },
+            lotus: { 50:'#fdf2f8',100:'#fce7f3',200:'#fbcfe8',300:'#f9a8d4',400:'#f472b6',500:'#ec4899',600:'#db2777',700:'#be185d',800:'#9d174d',900:'#831843' },
+            gold: '#f59e0b',
+            ink: '#1c1917'
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'ui-serif', 'Georgia', 'serif'],
+            devanagari: ['"Noto Serif Devanagari"', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          backgroundImage: {
+            app: 'linear-gradient(180deg, #5c2e12 0%, #7c3a18 30%, #9a4715 70%, #5c2e12 100%)',
+            sacred: 'linear-gradient(135deg, #fde68a 0%, #f59e0b 45%, #d97706 100%)',
+            mandala: 'radial-gradient(circle at 30% 20%, rgba(245,158,11,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(217,119,6,0.12) 0%, transparent 50%)'
+          },
+          boxShadow: { 
+            sacred: '0 10px 30px rgba(245,158,11,0.25)', 
+            lotus: '0 8px 25px rgba(236,72,153,0.20)',
+            earth: '0 6px 20px rgba(92,46,18,0.30)',
+            gold: '0 8px 25px rgba(245,158,11,0.30)'
+          },
+          keyframes: {
+            float: { '0%,100%': { transform:'translateY(0)' }, '50%': { transform:'translateY(-6px)' } },
+            fadeUp: { '0%': { opacity:0, transform:'translateY(12px)' }, '100%': { opacity:1, transform:'translateY(0)' } },
+            shine: { '0%': { transform:'translateX(-150%) skewX(-20deg)' }, '100%': { transform:'translateX(250%) skewX(-20deg)' } }
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            fadeUp: 'fadeUp .5s ease forwards'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .glass { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(92,46,18,0.15); border: 1px solid rgba(245,158,11,0.25); }
+    .sacred-line { border: 1px solid rgba(245,158,11,0.40); }
+    .gold-line { border: 1px solid rgba(245,158,11,0.40); }
+    .btn-gold { position: relative; overflow: hidden; }
+    .btn-gold::before {
+      content:''; position:absolute; top:0; left:0; height:100%; width:40%;
+      background: linear-gradient(90deg, rgba(253,230,138,0) 0%, rgba(253,230,138,.4) 50%, rgba(253,230,138,0) 100%);
+      transform: translateX(-150%) skewX(-20deg);
+    }
+    .btn-gold:hover::before { animation: shine .9s ease-out; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: rgba(92,46,18,0.15); border-radius: 8px; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #fde68a, #d97706); border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #fde68a, #b45309); }
+  </style>
+</head>
+
+<body class="min-h-screen bg-app text-slate-50 font-body relative">
+  <!-- Sacred mandala background -->
+  <div class="fixed inset-0 bg-mandala pointer-events-none opacity-40"></div>
+  <!-- Sacred energy background -->
+  <div aria-hidden="true" class="fixed inset-0 -z-10 pointer-events-none">
+    <div class="absolute -top-24 -left-24 w-[28rem] h-[28rem] rounded-full blur-3xl" style="background: radial-gradient(circle at center, rgba(245,158,11,0.20), rgba(217,119,6,0.08) 50%, transparent 60%);"></div>
+    <div class="absolute -bottom-24 -right-24 w-[30rem] h-[30rem] rounded-full blur-3xl" style="background: radial-gradient(circle at center, rgba(236,72,153,0.25), rgba(190,24,93,0.12) 50%, transparent 70%);"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-30" style="background: radial-gradient(circle at center, rgba(34,197,94,0.15), transparent 60%);"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 glass border-b border-saffron-300/20 bg-earth-900/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl animate-float">🍃</span>
+          <div>
+            <p class="font-display text-xl leading-none text-saffron-200">Panchakarma</p>
+            <p class="text-xs text-sandalwood-300 font-devanagari">पञ्चकर्म चिकित्सा प्रबंधन</p>
+          </div>
+
+        </div>
+
+        <!-- Role switch -->
+        <div class="flex items-center gap-2">
+          <label class="text-sandalwood-300 text-sm mr-1">🍃 Role:</label>
+          <select id="roleSelect" class="bg-earth-800/60 border border-saffron-400/30 rounded-lg px-3 py-1.5 text-sm text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400">
+            <option value="patient">🧘‍♀️ Patient</option>
+            <option value="doctor">👨‍⚕️ Vaidya</option>
+            <option value="pa">📋 Assistant</option>
+            <option value="admin">🏛️ Admin</option>
+          </select>
+          <a href="#paymentDemo" id="paymentDemoBtn" class="ml-3 hidden px-3 py-1.5 rounded-lg bg-gold btn-gold text-ink text-sm font-semibold shadow-gold">💰 Pay</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Nav -->
+  <nav class="sticky top-16 z-40 glass border-b border-saffron-300/20 bg-earth-800/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="tabs" class="flex gap-2 overflow-x-auto py-2">
+        <!-- Tabs injected by JS -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Login View -->
+    <section id="view-login" class="hidden">
+      <div class="min-h-[70vh] flex items-center justify-center">
+        <div class="w-full max-w-md">
+          <!-- Sacred Login Card -->
+          <div class="glass gold-line rounded-2xl p-8 bg-earth-800/40 animate-fadeUp">
+            <!-- Header -->
+            <div class="text-center mb-8">
+              <div class="flex items-center justify-center gap-3 mb-4">
+                <span class="text-4xl animate-float">🍃</span>
+                <div>
+                  <h1 class="font-display text-2xl text-saffron-200">Panchakarma</h1>
+                  <p class="text-xs text-sandalwood-300 font-devanagari">पञ्चकर्म चिकित्सा प्रबंधन</p>
+                </div>
+              </div>
+              <h2 class="font-display text-xl text-saffron-100">Sacred Portal Entry</h2>
+              <p class="text-sandalwood-300 text-sm mt-1">Enter your credentials to access the healing platform</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🧘‍♀️ Username or Email
+                </label>
+                <input 
+                  type="text" 
+                  id="loginUsername" 
+                  required
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                  placeholder="Enter your username or email"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🔐 Password
+                </label>
+                <div class="relative">
+                  <input 
+                    type="password" 
+                    id="loginPassword" 
+                    required
+                    class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 pr-12 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                    placeholder="Enter your password"
+                  />
+                  <button 
+                    type="button" 
+                    id="togglePassword"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-sandalwood-400 hover:text-sandalwood-200 transition-colors"
+                  >
+                    👁️
+                  </button>
+                </div>
+              </div>
+
+              <!-- Role Selection -->
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🍃 Login As
+                </label>
+                <select 
+                  id="loginRole" 
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400"
+                >
+                  <option value="patient">🧘‍♀️ Patient</option>
+                  <option value="doctor">👨‍⚕️ Vaidya (Doctor)</option>
+                  <option value="pa">📋 Personal Assistant</option>
+                  <option value="admin">🏛️ Administrator</option>
+                </select>
+              </div>
+
+              <!-- Remember Me -->
+              <div class="flex items-center justify-between">
+                <label class="flex items-center gap-2 text-sm text-sandalwood-300">
+                  <input 
+                    type="checkbox" 
+                    id="rememberMe"
+                    class="rounded border-saffron-400/30 bg-earth-900/50 text-saffron-500 focus:ring-saffron-400 focus:ring-offset-0"
+                  />
+                  Remember me
+                </label>
+                <button 
+                  type="button" 
+                  id="forgotPassword"
+                  class="text-sm text-saffron-300 hover:text-saffron-200 underline transition-colors"
+                >
+                  Forgot password?
+                </button>
+              </div>
+
+              <!-- Login Button -->
+              <button 
+                type="submit"
+                class="w-full px-6 py-3 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold hover:brightness-110 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                🌿 Enter Sacred Portal
+              </button>
+
+              <!-- Login Message -->
+              <p id="loginMsg" class="hidden text-sm text-center mt-3"></p>
+            </form>
+
+            <!-- Divider -->
+            <div class="my-6 flex items-center">
+              <div class="flex-1 border-t border-saffron-400/20"></div>
+              <span class="px-3 text-xs text-sandalwood-400">OR</span>
+              <div class="flex-1 border-t border-saffron-400/20"></div>
+            </div>
+
+            <!-- Quick Demo Access -->
+            <div class="space-y-3">
+              <p class="text-center text-sm text-sandalwood-300">Quick Access (No Login Required)</p>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  data-demo-role="patient"
+                  class="px-3 py-2 rounded-lg bg-saffron-800/30 border border-saffron-600/40 hover:bg-saffron-700/40 text-saffron-200 text-sm transition-all"
+                >
+                  🧘‍♀️ Patient
+                </button>
+                <button 
+                  data-demo-role="doctor"
+                  class="px-3 py-2 rounded-lg bg-turmeric-800/30 border border-turmeric-600/40 hover:bg-turmeric-700/40 text-turmeric-200 text-sm transition-all"
+                >
+                  👨‍⚕️ Vaidya
+                </button>
+                <button 
+                  data-demo-role="pa"
+                  class="px-3 py-2 rounded-lg bg-earth-800/30 border border-earth-600/40 hover:bg-earth-700/40 text-earth-200 text-sm transition-all"
+                >
+                  📋 Assistant
+                </button>
+                <button 
+                  data-demo-role="admin"
+                  class="px-3 py-2 rounded-lg bg-sandalwood-700/40 border border-sandalwood-500/40 hover:bg-sandalwood-600/50 text-sandalwood-200 text-sm transition-all"
+                >
+                  🏛️ Admin
+                </button>
+              </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="mt-6 text-center space-y-2">
+              <p class="text-xs text-sandalwood-400">
+                Don't have an account? 
+                <button id="signupLink" class="text-saffron-300 hover:text-saffron-200 underline">
+                  Create Account
+                </button>
+              </p>
+              <p class="text-xs text-sandalwood-500">
+                By logging in, you agree to our Terms of Service and Privacy Policy
+              </p>
+            </div>
+          </div>
+
+          <!-- Sacred Mandala Decoration -->
+          <div class="mt-8 text-center opacity-60">
+            <svg viewBox="0 0 120 40" class="w-32 h-auto mx-auto">
+              <defs>
+                <linearGradient id="mandalaGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fde68a"/>
+                  <stop offset="50%" stop-color="#f59e0b"/>
+                  <stop offset="100%" stop-color="#d97706"/>
+                </linearGradient>
+              </defs>
+              <circle cx="20" cy="20" r="3" fill="url(#mandalaGrad)" opacity="0.8"/>
+              <circle cx="40" cy="20" r="4" fill="url(#mandalaGrad)" opacity="0.9"/>
+              <circle cx="60" cy="20" r="5" fill="url(#mandalaGrad)"/>
+              <circle cx="80" cy="20" r="4" fill="url(#mandalaGrad)" opacity="0.9"/>
+              <circle cx="100" cy="20" r="3" fill="url(#mandalaGrad)" opacity="0.8"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup View -->
+    <section id="view-signup" class="hidden">
+      <div class="min-h-[70vh] flex items-center justify-center">
+        <div class="w-full max-w-lg">
+          <!-- Sacred Signup Card -->
+          <div class="glass gold-line rounded-2xl p-8 bg-earth-800/40 animate-fadeUp">
+            <!-- Header -->
+            <div class="text-center mb-8">
+              <div class="flex items-center justify-center gap-3 mb-4">
+                <span class="text-4xl animate-float">🌱</span>
+                <div>
+                  <h1 class="font-display text-2xl text-saffron-200">Create Sacred Account</h1>
+                  <p class="text-xs text-sandalwood-300 font-devanagari">नया खाता बनाएं</p>
+                </div>
+              </div>
+              <h2 class="font-display text-xl text-saffron-100">Join the Healing Journey</h2>
+              <p class="text-sandalwood-300 text-sm mt-1">Create your account to access personalized Panchakarma care</p>
+            </div>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="space-y-4">
+              <!-- Personal Information -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                    🧘‍♀️ First Name
+                  </label>
+                  <input 
+                    type="text" 
+                    id="signupFirstName" 
+                    required
+                    class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                    placeholder="First name"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                    👤 Last Name
+                  </label>
+                  <input 
+                    type="text" 
+                    id="signupLastName" 
+                    required
+                    class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                    placeholder="Last name"
+                  />
+                </div>
+              </div>
+
+              <!-- Contact Information -->
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  📧 Email Address
+                </label>
+                <input 
+                  type="email" 
+                  id="signupEmail" 
+                  required
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  📱 Phone Number
+                </label>
+                <input 
+                  type="tel" 
+                  id="signupPhone" 
+                  required
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+
+              <!-- Account Details -->
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  👤 Username
+                </label>
+                <input 
+                  type="text" 
+                  id="signupUsername" 
+                  required
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                  placeholder="Choose a unique username"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🔐 Password
+                </label>
+                <div class="relative">
+                  <input 
+                    type="password" 
+                    id="signupPassword" 
+                    required
+                    minlength="6"
+                    class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 pr-12 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                    placeholder="Create a secure password"
+                  />
+                  <button 
+                    type="button" 
+                    id="toggleSignupPassword"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-sandalwood-400 hover:text-sandalwood-200 transition-colors"
+                  >
+                    👁️
+                  </button>
+                </div>
+                <p class="text-xs text-sandalwood-400 mt-1">Minimum 6 characters</p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🔒 Confirm Password
+                </label>
+                <input 
+                  type="password" 
+                  id="signupConfirmPassword" 
+                  required
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:border-transparent transition-all"
+                  placeholder="Confirm your password"
+                />
+              </div>
+
+              <!-- Role Selection -->
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🍃 Account Type
+                </label>
+                <select 
+                  id="signupRole" 
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400"
+                >
+                  <option value="patient">🧘‍♀️ Patient - Seeking healing treatments</option>
+                  <option value="doctor">👨‍⚕️ Vaidya - Ayurvedic practitioner</option>
+                  <option value="pa">📋 Assistant - Administrative support</option>
+                </select>
+              </div>
+
+              <!-- Additional Information -->
+              <div>
+                <label class="block text-sm font-medium text-sandalwood-200 mb-2">
+                  🏛️ Preferred Location
+                </label>
+                <select 
+                  id="signupLocation" 
+                  class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-3 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400"
+                >
+                  <option value="">Select your city</option>
+                  <option value="pune">Pune</option>
+                  <option value="bangalore">Bangalore</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="delhi">Delhi</option>
+                  <option value="rishikesh">Rishikesh</option>
+                  <option value="kerala">Kerala</option>
+                </select>
+              </div>
+
+              <!-- Terms and Conditions -->
+              <div class="flex items-start gap-3">
+                <input 
+                  type="checkbox" 
+                  id="signupTerms"
+                  required
+                  class="mt-1 rounded border-saffron-400/30 bg-earth-900/50 text-saffron-500 focus:ring-saffron-400 focus:ring-offset-0"
+                />
+                <label for="signupTerms" class="text-sm text-sandalwood-300">
+                  I agree to the <button type="button" class="text-saffron-300 hover:text-saffron-200 underline">Terms of Service</button> and <button type="button" class="text-saffron-300 hover:text-saffron-200 underline">Privacy Policy</button>
+                </label>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <input 
+                  type="checkbox" 
+                  id="signupNewsletter"
+                  class="mt-1 rounded border-saffron-400/30 bg-earth-900/50 text-saffron-500 focus:ring-saffron-400 focus:ring-offset-0"
+                />
+                <label for="signupNewsletter" class="text-sm text-sandalwood-300">
+                  Send me updates about new treatments and wellness tips
+                </label>
+              </div>
+
+              <!-- Create Account Button -->
+              <button 
+                type="submit"
+                class="w-full px-6 py-3 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold hover:brightness-110 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              >
+                🌱 Create Sacred Account
+              </button>
+
+              <!-- Signup Message -->
+              <p id="signupMsg" class="hidden text-sm text-center mt-3"></p>
+            </form>
+
+            <!-- Divider -->
+            <div class="my-6 flex items-center">
+              <div class="flex-1 border-t border-saffron-400/20"></div>
+              <span class="px-3 text-xs text-sandalwood-400">OR</span>
+              <div class="flex-1 border-t border-saffron-400/20"></div>
+            </div>
+
+            <!-- Back to Login -->
+            <div class="text-center">
+              <p class="text-sm text-sandalwood-300">
+                Already have an account? 
+                <button id="backToLogin" class="text-saffron-300 hover:text-saffron-200 underline font-medium">
+                  Sign In
+                </button>
+              </p>
+            </div>
+          </div>
+
+          <!-- Sacred Lotus Decoration -->
+          <div class="mt-8 text-center opacity-60">
+            <svg viewBox="0 0 160 50" class="w-40 h-auto mx-auto">
+              <defs>
+                <linearGradient id="lotusGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fde68a"/>
+                  <stop offset="50%" stop-color="#f59e0b"/>
+                  <stop offset="100%" stop-color="#ec4899"/>
+                </linearGradient>
+              </defs>
+              <!-- Lotus petals -->
+              <path d="M80 35 C70 25, 60 30, 65 40 C70 35, 75 35, 80 35" fill="url(#lotusGrad)" opacity="0.7"/>
+              <path d="M80 35 C90 25, 100 30, 95 40 C90 35, 85 35, 80 35" fill="url(#lotusGrad)" opacity="0.7"/>
+              <path d="M80 35 C75 20, 85 20, 80 35" fill="url(#lotusGrad)" opacity="0.8"/>
+              <circle cx="80" cy="35" r="4" fill="url(#lotusGrad)"/>
+              <!-- Side decorations -->
+              <circle cx="30" cy="35" r="2" fill="url(#lotusGrad)" opacity="0.6"/>
+              <circle cx="130" cy="35" r="2" fill="url(#lotusGrad)" opacity="0.6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Views -->
+    <section id="view-home" class="hidden">
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="glass gold-line rounded-2xl p-6 animate-fadeUp bg-earth-800/40">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-saffron-500/20 border border-saffron-400/40 text-sm font-devanagari text-saffron-200">🍃 स्वागतम् • Welcome</span>
+          <h1 class="mt-4 font-display text-4xl font-bold text-saffron-100">Panchakarma: Sacred Healing Journey</h1>
+          <p class="mt-3 text-sandalwood-200">Complete Ayurvedic therapy management with authentic traditions—from initial consultation to post-therapy care, designed with sacred wisdom and modern functionality.</p>
+          <div class="mt-6 grid sm:grid-cols-2 gap-3">
+            <button data-nav="booking" class="px-5 py-3 rounded-xl bg-gold btn-gold text-ink font-semibold shadow-gold hover:brightness-110">🌿 Begin Healing</button>
+            <button data-nav="centers" class="px-5 py-3 rounded-xl glass border border-saffron-400/30 hover:bg-saffron-500/10 text-saffron-200">🏛️ Sacred Centers</button>
+          </div>
+
+        </div>
+
+        <div class="glass gold-line rounded-2xl p-6 animate-fadeUp bg-earth-800/40">
+          <h2 class="font-display text-2xl text-saffron-100">🍃 Choose Your Sacred Path</h2>
+          <p class="text-sandalwood-300 mt-1">Each role offers unique tools for healing journey.</p>
+          <div class="mt-5 grid grid-cols-2 gap-3">
+            <button data-role="patient" class="roleBtn px-4 py-3 rounded-xl bg-saffron-800/30 border border-saffron-600/40 hover:bg-saffron-700/40 text-saffron-200">🧘‍♀️ Patient</button>
+            <button data-role="doctor" class="roleBtn px-4 py-3 rounded-xl bg-turmeric-800/30 border border-turmeric-600/40 hover:bg-turmeric-700/40 text-turmeric-200">👨‍⚕️ Vaidya</button>
+            <button data-role="pa" class="roleBtn px-4 py-3 rounded-xl bg-earth-800/30 border border-earth-600/40 hover:bg-earth-700/40 text-earth-200">📋 Assistant</button>
+            <button data-role="admin" class="roleBtn px-4 py-3 rounded-xl bg-sandalwood-700/40 border border-sandalwood-500/40 hover:bg-sandalwood-600/50 text-sandalwood-200">🏛️ Admin</button>
+          </div>
+          <div class="mt-6 rounded-xl overflow-hidden bg-earth-900/30 p-4">
+            <!-- Sacred progress mandala -->
+            <svg viewBox="0 0 200 90" class="w-full h-auto" aria-hidden="true">
+              <defs>
+                <linearGradient id="sacredGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fde68a"/>
+                  <stop offset="50%" stop-color="#f59e0b"/>
+                  <stop offset="100%" stop-color="#d97706"/>
+                </linearGradient>
+              </defs>
+              <rect x="16" y="36" width="168" height="18" rx="9" fill="rgba(92,51,23,0.20)" stroke="rgba(245,158,11,0.30)" stroke-width="1"/>
+              <rect id="overallProgress" x="16" y="36" width="84" height="18" rx="9" fill="url(#sacredGrad)"/>
+              <text x="100" y="76" text-anchor="middle" fill="#eaddd7" opacity=".85" font-size="12">🍃 Sacred System Harmony</text>
+            </svg>
+          </div>
+          <button id="seedBtn" class="mt-4 text-xs underline text-saffron-300 hover:text-saffron-200">🌱 Seed sacred demo data</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-booking" class="hidden">
+      <div class="grid lg:grid-cols-[2fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6 bg-earth-800/40">
+          <h2 class="font-display text-2xl text-saffron-100">🌿 Sacred Therapy Enquiry</h2>
+          <form id="searchForm" class="mt-4 grid sm:grid-cols-3 gap-3">
+            <input type="text" id="qCity" class="rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-2 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400" placeholder="🏛️ City (e.g., Rishikesh)" />
+            <select id="qTherapy" class="rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-2 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400">
+              <option value="">🍃 Any therapy</option>
+            </select>
+            <button class="px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">🔍 Find Centers</button>
+          </form>
+
+          <div id="centerResults" class="mt-5 grid md:grid-cols-2 gap-4">
+            <!-- Results -->
+          </div>
+        </div>
+
+        <div class="glass gold-line rounded-2xl p-6 bg-earth-800/40">
+          <h3 class="font-display text-xl text-saffron-100">🍃 Sacred Booking</h3>
+          <form id="bookForm" class="mt-3 space-y-3">
+            <input required type="text" id="bfName" class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-2 placeholder-sandalwood-400 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400" placeholder="🧘‍♀️ Patient name" />
+            <select required id="bfCenter" class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-2 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400"></select>
+            <select required id="bfTherapy" class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-2 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400"></select>
+            <select required id="bfTherapist" class="w-full rounded-lg bg-earth-900/50 border border-saffron-400/30 px-4 py-2 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400"></select>
+            <div class="grid grid-cols-2 gap-3">
+              <input required type="date" id="bfDate" class="rounded-lg bg-earth-900/50 border border-saffron-400/30 px-3 py-2 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400">
+              <input required type="time" id="bfTime" value="10:00" class="rounded-lg bg-earth-900/50 border border-saffron-400/30 px-3 py-2 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400">
+            </div>
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">🍃 Confirm Appointment</button>
+            <p id="bfMsg" class="hidden text-sm mt-1"></p>
+            <button type="button" id="bfPay" class="w-full px-4 py-2 rounded-lg bg-turmeric-800/40 border border-turmeric-600/40 hover:bg-turmeric-700/50 text-turmeric-200">💰 Sacred Payment</button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="view-patient" class="hidden">
+      <div class="grid lg:grid-cols-[1.2fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <div class="flex items-end justify-between">
+            <div>
+              <h2 class="font-display text-2xl">🧘‍♀️ Patient Dashboard</h2>
+              <p class="text-white/80">Track your progress, upcoming sessions, and feedback.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-2">
+                <label class="text-sm text-white/80">Patient:</label>
+                <input id="pdName" class="rounded-lg bg-white/10 border border-white/20 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-saffron-400" placeholder="Enter name" />
+              </div>
+              <div class="relative">
+                <select id="patientActions" class="rounded-lg bg-earth-900/80 border border-saffron-400/40 px-3 py-1.5 text-sandalwood-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 cursor-pointer" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.8);">
+                  <option value="" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9);">🍃 Quick Actions</option>
+                  <optgroup label="📊 Progress & Reports" style="color: #f59e0b; background-color: rgba(92, 46, 18, 0.9); font-weight: bold;">
+                    <option value="progress" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">📈 View Progress Details</option>
+                    <option value="reports" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">📋 Medical Reports</option>
+                    <option value="history" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">📚 Treatment History</option>
+                  </optgroup>
+                  <optgroup label="📅 Scheduling & Booking" style="color: #f59e0b; background-color: rgba(92, 46, 18, 0.9); font-weight: bold;">
+                    <option value="scheduling" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">📅 Book New Therapy</option>
+                    <option value="reschedule" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">🔄 Reschedule Appointment</option>
+                    <option value="cancel" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">❌ Cancel Appointment</option>
+                  </optgroup>
+                  <optgroup label="🌿 Care & Support" style="color: #f59e0b; background-color: rgba(92, 46, 18, 0.9); font-weight: bold;">
+                    <option value="followup" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">💬 Follow-up Support</option>
+                    <option value="diet" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">🥗 Diet & Lifestyle Plan</option>
+                    <option value="feedback" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">⭐ Give Feedback</option>
+                  </optgroup>
+                  <optgroup label="💰 Payments & Billing" style="color: #f59e0b; background-color: rgba(92, 46, 18, 0.9); font-weight: bold;">
+                    <option value="payment" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">💳 Make Payment</option>
+                    <option value="billing" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">🧾 View Bills</option>
+                  </optgroup>
+                  <optgroup label="🏥 Centers & Doctors" style="color: #f59e0b; background-color: rgba(92, 46, 18, 0.9); font-weight: bold;">
+                    <option value="centers" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">🏛️ Find Centers</option>
+                    <option value="doctors" style="color: #eaddd7; background-color: rgba(92, 46, 18, 0.9); padding-left: 20px;">👨‍⚕️ View Doctors</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-xl glass gold-line p-4">
+              <h3 class="font-semibold">Upcoming Appointments</h3>
+              <ul id="pdUpcoming" class="mt-2 space-y-2 text-sm">
+                <!-- items -->
+              </ul>
+            </div>
+            <div class="rounded-xl glass gold-line p-4">
+              <h3 class="font-semibold">Progress</h3>
+              <div class="mt-2 flex items-center gap-4">
+                <svg viewBox="0 0 120 120" class="w-24 h-24">
+                  <circle cx="60" cy="60" r="48" stroke="rgba(255,255,255,0.2)" stroke-width="14" fill="none"/>
+                  <circle id="pdProgressArc" cx="60" cy="60" r="48" stroke="url(#grad)" stroke-width="14" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 999"/>
+                  <defs>
+                    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffd189"/><stop offset="100%" stop-color="#b45309"/></linearGradient>
+                  </defs>
+                </svg>
+                <div>
+                  <p class="text-3xl font-bold" id="pdProgressNum">0%</p>
+                  <p class="text-xs text-white/70">Completed sessions</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 rounded-xl glass gold-line p-4">
+            <h3 class="font-semibold">Your Feedback</h3>
+            <ul id="pdFeedbacks" class="mt-2 space-y-2 text-sm">
+              <!-- feedback -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Quick Feedback</h3>
+          <form id="fbForm" class="mt-3 space-y-3">
+            <input id="fbName" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-saffron-400" placeholder="Your name" />
+            <select id="fbBooking" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2"></select>
+            <div class="flex items-center gap-3">
+              <label class="text-sm">Rating:</label>
+              <input type="range" id="fbRating" min="1" max="5" value="5" class="w-full">
+              <span id="fbRatingVal" class="text-sm">5</span>
+            </div>
+            <textarea id="fbText" rows="3" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-saffron-400" placeholder="Share your experience..."></textarea>
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Submit Feedback</button>
+            <p id="fbMsg" class="hidden text-sm mt-1"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-centers" class="hidden">
+      <div class="glass gold-line rounded-2xl p-6">
+        <h2 class="font-display text-2xl">Centers</h2>
+        <div id="centersGrid" class="mt-5 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- cards -->
+        </div>
+      </div>
+    </section>
+
+    <section id="view-doctor" class="hidden">
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display text-2xl">Doctor Portal</h2>
+            <select id="docSelect" class="rounded-lg bg-white/10 border border-white/20 px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-saffron-400"></select>
+          </div>
+          <ul id="docSchedule" class="mt-4 space-y-2 text-sm"></ul>
+        </div>
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Therapy Planning</h3>
+          <form id="planForm" class="mt-3 space-y-3">
+            <select id="planBooking" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2"></select>
+            <textarea id="planNotes" rows="4" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Plan notes, herbs, follow-ups..."></textarea>
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Save Plan</button>
+            <p id="planMsg" class="hidden text-sm mt-1"></p>
+          </form>
+          <div class="mt-4">
+            <h4 class="font-semibold">Latest Plans</h4>
+            <ul id="planList" class="mt-2 space-y-2 text-sm"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-pa" class="hidden">
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <h2 class="font-display text-2xl">PA • Appointment Management</h2>
+          <ul id="paList" class="mt-4 space-y-2 text-sm"></ul>
+        </div>
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Reschedule</h3>
+          <form id="resForm" class="mt-3 space-y-3">
+            <select id="resBooking" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2"></select>
+            <div class="grid grid-cols-2 gap-3">
+              <input type="date" id="resDate" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+              <input type="time" id="resTime" value="11:00" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+            </div>
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Apply</button>
+            <p id="resMsg" class="hidden text-sm mt-1"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="hidden">
+      <div class="grid lg:grid-cols-[1.2fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <h2 class="font-display text-2xl">Admin • Overview</h2>
+          <div class="mt-4 grid sm:grid-cols-3 gap-4">
+            <div class="rounded-xl glass gold-line p-4">
+              <p class="text-white/70 text-sm">Bookings</p>
+              <p id="adBookings" class="text-3xl font-bold">0</p>
+            </div>
+            <div class="rounded-xl glass gold-line p-4">
+              <p class="text-white/70 text-sm">Patients</p>
+              <p id="adPatients" class="text-3xl font-bold">0</p>
+            </div>
+            <div class="rounded-xl glass gold-line p-4">
+              <p class="text-white/70 text-sm">Feedback Avg</p>
+              <p id="adRating" class="text-3xl font-bold">0.0</p>
+            </div>
+          </div>
+          <div class="mt-6 rounded-xl glass gold-line p-4">
+            <h3 class="font-semibold">Bookings by Therapy</h3>
+            <div id="adChart" class="mt-3 grid grid-cols-6 gap-2 items-end h-40">
+              <!-- bars -->
+            </div>
+            <div id="adChartLabels" class="mt-2 grid grid-cols-6 gap-2 text-center text-xs text-white/80"></div>
+          </div>
+        </div>
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Announcements</h3>
+          <form id="annForm" class="mt-3 space-y-3">
+            <input id="annTitle" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Title">
+            <textarea id="annBody" rows="3" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Message..."></textarea>
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Post</button>
+            <p id="annMsg" class="hidden text-sm mt-1"></p>
+          </form>
+          <ul id="annList" class="mt-4 space-y-2 text-sm"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-feedback" class="hidden">
+      <div class="glass gold-line rounded-2xl p-6">
+        <h2 class="font-display text-2xl">Feedback Center</h2>
+        <ul id="fbList" class="mt-4 space-y-2 text-sm"></ul>
+      </div>
+    </section>
+
+    <section id="view-reports" class="hidden">
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <h2 class="font-display text-2xl">Diagnostics & Reports</h2>
+          <form id="docForm" class="mt-3 space-y-3">
+            <input id="docPatient" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Patient name" />
+            <div class="grid grid-cols-2 gap-3">
+              <input id="docTitle" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Document title">
+              <select id="docType" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+                <option>Blood Test</option><option>Imaging</option><option>Prescription</option><option>Other</option>
+              </select>
+            </div>
+            <input type="file" id="docFile" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Add Document (Demo)</button>
+            <p id="docMsg" class="hidden text-sm mt-1"></p>
+          </form>
+        </div>
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Repository</h3>
+          <ul id="docList" class="mt-3 space-y-2 text-sm"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-schedule" class="hidden">
+      <div class="glass gold-line rounded-2xl p-6">
+        <div class="flex items-center justify-between">
+          <h2 class="font-display text-2xl">Smart Scheduling</h2>
+          <div class="flex items-center gap-3">
+            <select id="schTherapist" class="rounded-lg bg-white/10 border border-white/20 px-3 py-1.5"></select>
+            <input type="date" id="schDate" class="rounded-lg bg-white/10 border border-white/20 px-3 py-1.5">
+            <button id="schRefresh" class="px-3 py-1.5 rounded-lg bg-white/10 border border-white/20 hover:bg-white/15">Refresh</button>
+          </div>
+        </div>
+        <div id="schGrid" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <!-- day columns -->
+        </div>
+        <p id="schHelp" class="mt-3 text-sm text-white/80">Tip: Click a free slot to create a booking; busy slots will suggest the next available time automatically.</p>
+      </div>
+    </section>
+
+    <section id="view-diet" class="hidden">
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <h2 class="font-display text-2xl">Diet & Lifestyle Plan</h2>
+          <form id="dietForm" class="mt-3 space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <select id="dietDosha" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+                <option>Vata</option><option>Pitta</option><option>Kapha</option>
+              </select>
+              <select id="dietTherapy" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+                <option>Abhyanga</option><option>Shirodhara</option><option>Virechana</option><option>Basti</option><option>Nasya</option>
+              </select>
+            </div>
+            <textarea id="dietNotes" rows="3" class="w-full rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Allergies, preferences..."></textarea>
+            <button class="w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Generate Plan</button>
+          </form>
+        </div>
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Plan Preview</h3>
+          <pre id="dietOut" class="mt-3 text-sm whitespace-pre-wrap bg-white/5 rounded-lg p-3 border border-white/10 min-h-[160px]"></pre>
+          <button id="dietDownload" class="mt-3 w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 hover:bg-white/15">Download (txt)</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-followup" class="hidden">
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-6">
+        <div class="glass gold-line rounded-2xl p-6">
+          <h2 class="font-display text-2xl">Follow‑up Support</h2>
+          <form id="fuForm" class="mt-3 grid sm:grid-cols-3 gap-3">
+            <input id="fuPatient" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Patient name">
+            <input type="date" id="fuDate" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2">
+            <button class="px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Schedule Check‑in</button>
+          </form>
+          <ul id="fuList" class="mt-4 space-y-2 text-sm"></ul>
+        </div>
+        <div class="glass gold-line rounded-2xl p-6">
+          <h3 class="font-display text-xl">Messages (Demo)</h3>
+          <div id="msgBox" class="mt-3 h-56 overflow-y-auto rounded-lg bg-white/5 border border-white/10 p-3 space-y-2"></div>
+          <form id="msgForm" class="mt-3 grid grid-cols-[1fr_auto] gap-2">
+            <input id="msgText" class="rounded-lg bg-white/10 border border-white/20 px-3 py-2" placeholder="Type a message...">
+            <button class="px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Center Details Modal -->
+  <div id="modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative max-w-lg w-full glass gold-line rounded-2xl p-6">
+      <div class="flex items-center justify-between">
+        <h3 id="modalTitle" class="font-display text-xl">Center</h3>
+        <button id="modalClose" class="px-3 py-1 rounded-lg bg-white/10 border border-white/15 hover:bg-white/15">Close</button>
+      </div>
+      <div id="modalBody" class="mt-3 text-sm space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- Payment Demo Modal -->
+  <div id="payModal" class="hidden fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative max-w-md w-full glass gold-line rounded-2xl p-6">
+      <div class="flex items-center justify-between">
+        <h3 class="font-display text-xl">Payment (Demo)</h3>
+        <button id="payClose" class="px-3 py-1 rounded-lg bg-white/10 border border-white/15 hover:bg-white/15">Close</button>
+      </div>
+      <p class="mt-2 text-white/85 text-sm">This is a simulation only. No real payment is processed in this demo.</p>
+      <div class="mt-4 grid grid-cols-2 gap-2">
+        <button id="paySim" class="px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Simulate Success</button>
+        <button id="payFail" class="px-4 py-2 rounded-lg bg-white/10 border border-white/20 hover:bg-white/15">Simulate Fail</button>
+      </div>
+      <p id="payMsg" class="mt-3 text-sm"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🍃</span>
+          <span class="font-semibold">Panchakarma</span>
+          <span id="versionBadge" class="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs glass gold-line">v0</span>
+        </div>
+
+        <p class="text-white/70 text-sm">© <span id="year"></span> All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[60]">
+    <div class="glass gold-line rounded-xl px-4 py-2 text-sm"></div>
+  </div>
+
+  <script>
+    // Sacred Panchakarma Therapies
+    const therapies = ['🫴 Abhyanga','🏺 Shirodhara','🕉️ Virechana','🌺 Basti','🪷 Nasya'];
+    const centers = [
+      {id:'c1', name:'Sattva Ayurveda Center', city:'Pune', rating:4.7, therapies:['Abhyanga','Shirodhara','Basti'], phone:'+91 98765 11111'},
+      {id:'c2', name:'Prana Wellness Clinic', city:'Bangalore', rating:4.6, therapies:['Virechana','Basti','Nasya'], phone:'+91 98765 22222'},
+      {id:'c3', name:'Ananda Panchakarma', city:'Mumbai', rating:4.8, therapies:['Abhyanga','Shirodhara','Virechana','Nasya'], phone:'+91 98765 33333'},
+    ];
+    const therapists = [
+      {id:'t1', name:'Dr. Meera (Vaidya)', center:'c1'},
+      {id:'t2', name:'Dr. Arjun (Vaidya)', center:'c2'},
+      {id:'t3', name:'Therapist Lata', center:'c3'},
+    ];
+
+    let bookings = [
+      // date in YYYY-MM-DD, time in HH:MM 24h, duration 60 min
+      {id:'b1', patient:'Asha', therapy:'Abhyanga', center:'c1', therapist:'t1', date:today(1), time:'10:00', status:'booked'},
+      {id:'b2', patient:'Ravi', therapy:'Basti', center:'c2', therapist:'t2', date:today(1), time:'11:00', status:'booked'},
+    ];
+    let feedbacks = [
+      {id:'f1', patient:'Asha', booking:'b1', rating:5, text:'Very relaxing and grounding.'}
+    ];
+    let documents = [];
+    let plans = [];
+    let announcements = [];
+    let followups = [];
+    const state = { role:'patient', active:'home' };
+
+    // Utilities
+    function $(sel, root=document){ return root.querySelector(sel); }
+    function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+    function showToast(msg, type='info'){
+      const t = $('#toast'); const box = t.firstElementChild;
+      box.textContent = msg;
+      box.style.color = type==='error' ? '#fecaca' : '#eafff3';
+      t.classList.remove('hidden');
+      setTimeout(()=>t.classList.add('hidden'), 3000);
+    }
+    function showLoginMessage(msg, type='info'){
+      const msgEl = $('#loginMsg');
+      msgEl.textContent = msg;
+      msgEl.className = `text-sm text-center mt-3 ${type==='error' ? 'text-rose-300' : 'text-forest-200'}`;
+      msgEl.classList.remove('hidden');
+      setTimeout(() => msgEl.classList.add('hidden'), 4000);
+    }
+    function showSignupMessage(msg, type='info'){
+      const msgEl = $('#signupMsg');
+      msgEl.textContent = msg;
+      msgEl.className = `text-sm text-center mt-3 ${type==='error' ? 'text-rose-300' : type==='success' ? 'text-forest-200' : 'text-saffron-200'}`;
+      msgEl.classList.remove('hidden');
+      setTimeout(() => msgEl.classList.add('hidden'), 4000);
+    }
+    function today(offset=0){ const d = new Date(); d.setDate(d.getDate()+offset); return d.toISOString().slice(0,10); }
+    function timeToMinutes(t){ const [h,m]=t.split(':').map(Number); return h*60+m; }
+    function overlap(b1, b2){
+      if(b1.date!==b2.date || b1.therapist!==b2.therapist) return false;
+      const dur1=60, dur2=60;
+      const s1=timeToMinutes(b1.time), e1=s1+dur1;
+      const s2=timeToMinutes(b2.time), e2=s2+dur2;
+      return s1<e2 && s2<e1;
+    }
+    function nextAvailable(therapist, date, start){
+      let t = timeToMinutes(start);
+      const end = 18*60; // 6pm
+      while(t<=end){
+        const probe = {therapist, date, time:minsToTime(t)};
+        const clash = bookings.some(b=>overlap({...b}, {...probe, id:'probe'}));
+        if(!clash) return minsToTime(t);
+        t += 30;
+      }
+      return null;
+    }
+    function minsToTime(m){ const hh=String(Math.floor(m/60)).padStart(2,'0'); const mm=String(m%60).padStart(2,'0'); return `${hh}:${mm}`; }
+
+    // Role tabs by role
+    const roleTabs = {
+      patient: [
+        {id:'login', label:'Login'},
+        {id:'signup', label:'Sign Up'},
+        {id:'home', label:'Home'},
+        {id:'booking', label:'Enquiry & Booking'},
+        {id:'patient', label:'Patient Dashboard'},
+        {id:'centers', label:'Centers'},
+        {id:'feedback', label:'Feedback'},
+        {id:'diet', label:'Diet & Lifestyle'},
+        {id:'followup', label:'Follow‑up'}
+      ],
+      doctor: [
+        {id:'login', label:'Login'},
+        {id:'signup', label:'Sign Up'},
+        {id:'home', label:'Home'},
+        {id:'doctor', label:'Doctor Portal'},
+        {id:'schedule', label:'Smart Scheduling'},
+        {id:'reports', label:'Diagnostics & Reports'},
+        {id:'feedback', label:'Feedback'}
+      ],
+      pa: [
+        {id:'login', label:'Login'},
+        {id:'signup', label:'Sign Up'},
+        {id:'home', label:'Home'},
+        {id:'pa', label:'PA • Appointments'},
+        {id:'booking', label:'Quick Booking'},
+        {id:'schedule', label:'Smart Scheduling'},
+        {id:'centers', label:'Centers'}
+      ],
+      admin: [
+        {id:'login', label:'Login'},
+        {id:'signup', label:'Sign Up'},
+        {id:'home', label:'Home'},
+        {id:'admin', label:'Admin Panel'},
+        {id:'reports', label:'Diagnostics & Reports'},
+        {id:'feedback', label:'Feedback'},
+        {id:'schedule', label:'Smart Scheduling'}
+      ],
+    };
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      $('#year').textContent = new Date().getFullYear();
+      const vm = document.querySelector('meta[name="version"]')?.content || 'demo';
+      $('#versionBadge').textContent = 'v' + vm;
+
+      // Populate selects
+      const qTherapy = $('#qTherapy'); therapies.forEach(t => qTherapy.append(new Option(t, t)));
+      const bfTherapy = $('#bfTherapy'); therapies.forEach(t => bfTherapy.append(new Option(t, t)));
+      const bfCenter = $('#bfCenter'); centers.forEach(c => bfCenter.append(new Option(`${c.name} • ${c.city}`, c.id)));
+      const bfTherapist = $('#bfTherapist'); therapists.forEach(t => bfTherapist.append(new Option(`${t.name} (${centerName(t.center)})`, t.id)));
+
+      const docSelect = $('#docSelect'); therapists.forEach(t => docSelect.append(new Option(t.name, t.id)));
+      const schTherapist = $('#schTherapist'); therapists.forEach(t => schTherapist.append(new Option(t.name, t.id)));
+
+      // Role handling
+      const roleSel = $('#roleSelect');
+      roleSel.addEventListener('change', () => setRole(roleSel.value));
+      $all('.roleBtn').forEach(btn => btn.addEventListener('click', ()=>{ roleSel.value = btn.dataset.role; setRole(btn.dataset.role); }));
+
+      // Tabs nav
+      $('#tabs').addEventListener('click', (e)=>{
+        const btn = e.target.closest('button[data-view]'); if(!btn) return;
+        navigate(btn.dataset.view);
+      });
+
+      // Home quick nav
+      $all('button[data-nav]').forEach(b => b.addEventListener('click', ()=>navigate(b.dataset.nav)));
+
+      // Search
+      $('#searchForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        renderCenters($('#qCity').value.trim(), $('#qTherapy').value);
+      });
+
+      // Book form
+      $('#bookForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const patient = $('#bfName').value.trim();
+        const center = $('#bfCenter').value;
+        const therapy = $('#bfTherapy').value;
+        const therapist = $('#bfTherapist').value;
+        const date = $('#bfDate').value || today(1);
+        const time = $('#bfTime').value || '10:00';
+        if(!patient) return;
+        const draft = {id:'b'+(Date.now()), patient, therapy, center, therapist, date, time, status:'booked'};
+        const clash = bookings.some(b=>overlap(b, draft));
+        if(clash){
+          const next = nextAvailable(therapist, date, time);
+          $('#bfMsg').className='mt-2 text-sm text-rose-300'; $('#bfMsg').textContent = next ? `Time not available. Try ${next}.` : 'No availability later today.';
+          $('#bfMsg').classList.remove('hidden');
+          return;
+        }
+        bookings.push(draft);
+        $('#bfMsg').className='mt-2 text-sm text-forest-200'; $('#bfMsg').textContent='Booked successfully!';
+        $('#bfMsg').classList.remove('hidden');
+        refreshAll();
+        showToast('Appointment booked');
+      });
+
+      // Payment demo
+      const paymentBtn = $('#bfPay'); paymentBtn.addEventListener('click', openPay);
+      $('#paymentDemoBtn').addEventListener('click', openPay);
+      $('#payClose').addEventListener('click', closePay);
+      $('#paySim').addEventListener('click', ()=>{ $('#payMsg').textContent='Payment simulated successfully ✔'; $('#payMsg').className='mt-3 text-forest-200'; });
+      $('#payFail').addEventListener('click', ()=>{ $('#payMsg').textContent='Payment failed (demo)'; $('#payMsg').className='mt-3 text-rose-300'; });
+
+      // Patient dashboard bindings
+      $('#pdName').addEventListener('input', renderPatient);
+      $('#patientActions').addEventListener('change', (e) => {
+        const action = e.target.value;
+        if (!action) return;
+        
+        switch(action) {
+          // Progress & Reports
+          case 'progress':
+            const progressSection = document.querySelector('#pdProgressArc').closest('.rounded-xl');
+            progressSection.style.border = '2px solid #f59e0b';
+            progressSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => progressSection.style.border = '', 3000);
+            showToast('📈 Progress details highlighted');
+            break;
+          case 'reports':
+            navigate('reports');
+            showToast('📋 Navigated to medical reports');
+            break;
+          case 'history':
+            const upcomingSection = document.querySelector('#pdUpcoming').closest('.rounded-xl');
+            upcomingSection.style.border = '2px solid #22c55e';
+            upcomingSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => upcomingSection.style.border = '', 3000);
+            showToast('📚 Treatment history highlighted');
+            break;
+            
+          // Scheduling & Booking
+          case 'scheduling':
+            navigate('booking');
+            showToast('📅 Navigated to therapy booking');
+            break;
+          case 'reschedule':
+            navigate('pa');
+            showToast('🔄 Navigated to reschedule appointments');
+            break;
+          case 'cancel':
+            const patientName = $('#pdName').value.trim();
+            if (!patientName) {
+              showToast('❌ Please enter patient name first', 'error');
+              break;
+            }
+            const userBookings = bookings.filter(b => b.patient.toLowerCase() === patientName.toLowerCase());
+            if (userBookings.length === 0) {
+              showToast('❌ No appointments found to cancel', 'error');
+              break;
+            }
+            const nextBooking = userBookings.find(b => b.status === 'booked');
+            if (nextBooking) {
+              nextBooking.status = 'cancelled';
+              showToast('❌ Next appointment cancelled');
+              renderPatient();
+              refreshAll();
+            } else {
+              showToast('❌ No active appointments to cancel', 'error');
+            }
+            break;
+            
+          // Care & Support
+          case 'followup':
+            navigate('followup');
+            showToast('💬 Navigated to follow-up support');
+            break;
+          case 'diet':
+            navigate('diet');
+            showToast('🥗 Navigated to diet & lifestyle plan');
+            break;
+          case 'feedback':
+            const feedbackSection = document.querySelector('#fbForm').closest('.glass');
+            feedbackSection.style.border = '2px solid #ec4899';
+            feedbackSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => feedbackSection.style.border = '', 3000);
+            showToast('⭐ Feedback form highlighted');
+            break;
+            
+          // Payments & Billing
+          case 'payment':
+            openPay();
+            showToast('💳 Payment portal opened');
+            break;
+          case 'billing':
+            const patientForBilling = $('#pdName').value.trim() || 'Guest';
+            const patientBookings = bookings.filter(b => b.patient.toLowerCase() === patientForBilling.toLowerCase());
+            const totalAmount = patientBookings.length * 2500; // ₹2500 per session
+            $('#modalTitle').textContent = 'Billing Summary';
+            $('#modalBody').innerHTML = `
+              <div class="space-y-3">
+                <p class="text-white/85"><span class="opacity-75">Patient:</span> ${patientForBilling}</p>
+                <p class="text-white/85"><span class="opacity-75">Total Sessions:</span> ${patientBookings.length}</p>
+                <p class="text-white/85"><span class="opacity-75">Rate per Session:</span> ₹2,500</p>
+                <div class="border-t border-white/20 pt-2">
+                  <p class="text-white font-semibold"><span class="opacity-75">Total Amount:</span> ₹${totalAmount.toLocaleString()}</p>
+                </div>
+                <div class="mt-4 space-y-2">
+                  ${patientBookings.map(b => `
+                    <div class="bg-white/5 rounded-lg p-2 text-sm">
+                      <span>${b.date} • ${b.therapy} • ₹2,500</span>
+                      <span class="float-right text-xs ${b.status === 'completed' ? 'text-forest-300' : 'text-saffron-300'}">${b.status}</span>
+                    </div>
+                  `).join('')}
+                </div>
+                <button id="payBillBtn" class="mt-4 w-full px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Pay Now (Demo)</button>
+              </div>
+            `;
+            const modal = $('#modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('payBillBtn')?.addEventListener('click', () => {
+              closeModal();
+              openPay();
+            });
+            showToast('🧾 Billing summary displayed');
+            break;
+            
+          // Centers & Doctors
+          case 'centers':
+            navigate('centers');
+            showToast('🏛️ Navigated to centers directory');
+            break;
+          case 'doctors':
+            $('#modalTitle').textContent = 'Available Vaidyas';
+            $('#modalBody').innerHTML = `
+              <div class="space-y-3">
+                ${therapists.map(t => {
+                  const center = centers.find(c => c.id === t.center);
+                  return `
+                    <div class="bg-white/5 rounded-lg p-3 border border-white/10">
+                      <p class="font-semibold text-white">${t.name}</p>
+                      <p class="text-sm text-white/80">${center ? center.name + ' • ' + center.city : 'Unknown Center'}</p>
+                      <p class="text-xs text-white/70 mt-1">Specializes in traditional Panchakarma therapies</p>
+                      <button class="mt-2 px-3 py-1 rounded-lg bg-gold btn-gold text-ink text-sm font-semibold" onclick="$('#bfTherapist').value='${t.id}'; closeModal(); navigate('booking');">Book with ${t.name.split(' ')[1]}</button>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            `;
+            const doctorModal = $('#modal');
+            doctorModal.classList.remove('hidden');
+            doctorModal.classList.add('flex');
+            showToast('👨‍⚕️ Available doctors displayed');
+            break;
+        }
+        
+        // Reset dropdown
+        e.target.value = '';
+      });
+      $('#fbRating').addEventListener('input', ()=>$('#fbRatingVal').textContent = $('#fbRating').value);
+      $('#fbForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const patient = $('#fbName').value.trim() || 'Guest';
+        const booking = $('#fbBooking').value;
+        const rating = +$('#fbRating').value;
+        const text = $('#fbText').value.trim();
+        if(!booking) return;
+        feedbacks.unshift({id:'f'+Date.now(), patient, booking, rating, text});
+        $('#fbMsg').className='mt-1 text-sm text-forest-200'; $('#fbMsg').textContent='Feedback submitted. Thank you!';
+        $('#fbMsg').classList.remove('hidden');
+        $('#fbText').value='';
+        renderFeedback();
+        renderPatient();
+        refreshAdmin();
+      });
+
+      // Centers grid
+      renderCenters('', '');
+
+      // Doctor portal
+      $('#docSelect').addEventListener('change', renderDoctor);
+      $('#planForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const id = $('#planBooking').value;
+        const notes = $('#planNotes').value.trim();
+        if(!id || !notes) return;
+        const b = bookings.find(x=>x.id===id);
+        plans.unshift({id:'p'+Date.now(), booking:id, patient:b?.patient || 'Unknown', notes, at: new Date().toLocaleString()});
+        $('#planNotes').value='';
+        $('#planMsg').className='mt-1 text-sm text-forest-200'; $('#planMsg').textContent='Plan saved';
+        $('#planMsg').classList.remove('hidden');
+        renderPlans();
+      });
+
+      // PA portal
+      $('#resForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const id = $('#resBooking').value; const date = $('#resDate').value; const time = $('#resTime').value;
+        const b = bookings.find(x=>x.id===id); if(!b) return;
+        const probe = {...b, date, time};
+        const clash = bookings.some(x=>x.id!==b.id && overlap(x, probe));
+        const msg = $('#resMsg');
+        if(clash){
+          const next = nextAvailable(b.therapist, date, time);
+          msg.className='mt-1 text-sm text-rose-300';
+          msg.textContent = next ? `Clash detected. Next available: ${next}` : 'No availability later today.';
+          msg.classList.remove('hidden');
+          return;
+        }
+        b.date = date; b.time = time; msg.className='mt-1 text-sm text-forest-200'; msg.textContent='Rescheduled';
+        msg.classList.remove('hidden');
+        refreshAll();
+        showToast('Booking rescheduled');
+      });
+
+      // Admin
+      $('#annForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const title = $('#annTitle').value.trim(); const body = $('#annBody').value.trim();
+        if(!title || !body) return;
+        announcements.unshift({id:'a'+Date.now(), title, body, at: new Date().toLocaleString()});
+        $('#annTitle').value=''; $('#annBody').value='';
+        $('#annMsg').className='mt-1 text-sm text-forest-200'; $('#annMsg').textContent='Announcement posted';
+        $('#annMsg').classList.remove('hidden');
+        renderAnnouncements();
+      });
+
+      // Reports
+      $('#docForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const patient = $('#docPatient').value.trim() || 'Unknown';
+        const title = $('#docTitle').value.trim(); const type = $('#docType').value;
+        const fileInput = $('#docFile'); const fileName = fileInput.files[0]?.name || 'No file (demo)';
+        if(!title) return;
+        documents.unshift({id:'d'+Date.now(), patient, title, type, fileName, at:new Date().toLocaleString()});
+        $('#docMsg').className='mt-1 text-sm text-forest-200'; $('#docMsg').textContent='Document added (demo)';
+        $('#docMsg').classList.remove('hidden');
+        $('#docTitle').value=''; fileInput.value='';
+        renderDocs();
+      });
+
+      // Schedule
+      $('#schRefresh').addEventListener('click', renderSchedule);
+      $('#schTherapist').addEventListener('change', renderSchedule);
+      $('#schDate').value = today(1); $('#schDate').addEventListener('change', renderSchedule);
+
+      // Diet
+      $('#dietForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const d = $('#dietDosha').value; const th = $('#dietTherapy').value; const notes = $('#dietNotes').value.trim();
+        const plan = dietPlan(d, th, notes);
+        $('#dietOut').textContent = plan;
+      });
+      $('#dietDownload').addEventListener('click', ()=>{
+        const text = $('#dietOut').textContent || 'No plan yet';
+        const a = document.createElement('a');
+        a.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(text);
+        a.download = 'diet-plan.txt';
+        a.click();
+      });
+
+      // Follow-up
+      $('#fuForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const patient = $('#fuPatient').value.trim(); const date = $('#fuDate').value || today(3);
+        if(!patient) return;
+        followups.unshift({id:'fu'+Date.now(), patient, date});
+        renderFollowups(); showToast('Check-in scheduled');
+      });
+      $('#msgForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const t = $('#msgText').value.trim(); if(!t) return;
+        const box = $('#msgBox');
+        const me = document.createElement('div');
+        me.className='ml-auto max-w-[70%] bg-gold text-ink rounded-lg px-3 py-2';
+        me.textContent = t; box.append(me);
+        const reply = document.createElement('div');
+        reply.className='max-w-[70%] bg-white/10 border border-white/15 rounded-lg px-3 py-2';
+        reply.textContent = 'Auto-reply (demo): We have received your message.';
+        setTimeout(()=> box.append(reply), 600);
+        $('#msgText').value='';
+        box.scrollTop = box.scrollHeight;
+      });
+
+      // Login form handlers
+      $('#loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = $('#loginUsername').value.trim();
+        const password = $('#loginPassword').value.trim();
+        const role = $('#loginRole').value;
+        
+        if (!username || !password) {
+          showLoginMessage('Please enter both username and password', 'error');
+          return;
+        }
+        
+        // Simulate login validation
+        if (password.length < 3) {
+          showLoginMessage('Invalid credentials. Please try again.', 'error');
+          return;
+        }
+        
+        // Successful login
+        showLoginMessage('Login successful! Welcome to Panchakarma.', 'success');
+        setTimeout(() => {
+          setRole(role);
+          navigate('home');
+          showToast(`Welcome! Logged in as ${role}`);
+        }, 1000);
+      });
+
+      $('#togglePassword').addEventListener('click', () => {
+        const passwordInput = $('#loginPassword');
+        const toggleBtn = $('#togglePassword');
+        
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          toggleBtn.textContent = '🙈';
+        } else {
+          passwordInput.type = 'password';
+          toggleBtn.textContent = '👁️';
+        }
+      });
+
+      $('#forgotPassword').addEventListener('click', () => {
+        showToast('Password reset link sent to your email (demo)', 'info');
+      });
+
+      $('#signupLink').addEventListener('click', () => {
+        navigate('signup');
+      });
+
+      // Demo role buttons
+      $all('button[data-demo-role]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const role = btn.dataset.demoRole;
+          setRole(role);
+          navigate('home');
+          showToast(`Quick access as ${role} - no login required`);
+        });
+      });
+
+      // Signup form handlers
+      $('#signupForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const firstName = $('#signupFirstName').value.trim();
+        const lastName = $('#signupLastName').value.trim();
+        const email = $('#signupEmail').value.trim();
+        const phone = $('#signupPhone').value.trim();
+        const username = $('#signupUsername').value.trim();
+        const password = $('#signupPassword').value;
+        const confirmPassword = $('#signupConfirmPassword').value;
+        const role = $('#signupRole').value;
+        const location = $('#signupLocation').value;
+        const termsAccepted = $('#signupTerms').checked;
+        
+        // Validation
+        if (!firstName || !lastName || !email || !phone || !username || !password) {
+          showSignupMessage('Please fill in all required fields', 'error');
+          return;
+        }
+        
+        if (password.length < 6) {
+          showSignupMessage('Password must be at least 6 characters long', 'error');
+          return;
+        }
+        
+        if (password !== confirmPassword) {
+          showSignupMessage('Passwords do not match', 'error');
+          return;
+        }
+        
+        if (!termsAccepted) {
+          showSignupMessage('Please accept the Terms of Service and Privacy Policy', 'error');
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showSignupMessage('Please enter a valid email address', 'error');
+          return;
+        }
+        
+        // Simulate account creation
+        showSignupMessage('Creating your sacred account...', 'info');
+        
+        setTimeout(() => {
+          showSignupMessage('Account created successfully! Welcome to Panchakarma.', 'success');
+          
+          // Auto-login after successful signup
+          setTimeout(() => {
+            setRole(role);
+            navigate('home');
+            showToast(`Welcome ${firstName}! Your account has been created.`);
+          }, 1500);
+        }, 2000);
+      });
+
+      $('#toggleSignupPassword').addEventListener('click', () => {
+        const passwordInput = $('#signupPassword');
+        const toggleBtn = $('#toggleSignupPassword');
+        
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          toggleBtn.textContent = '🙈';
+        } else {
+          passwordInput.type = 'password';
+          toggleBtn.textContent = '👁️';
+        }
+      });
+
+      $('#backToLogin').addEventListener('click', () => {
+        navigate('login');
+      });
+
+      // Modal
+      $('#modalClose').addEventListener('click', closeModal);
+      $('#seedBtn').addEventListener('click', seedDemo);
+
+      // Default view - start with login
+      setRole('patient');
+      navigate('login');
+      refreshAll();
+    });
+
+    function setRole(role){
+      state.role = role;
+      // Payment demo button visible only for patient and pa
+      $('#paymentDemoBtn').classList.toggle('hidden', !(role==='patient' || role==='pa'));
+      // Build tabs
+      const tabs = roleTabs[role] || roleTabs.patient;
+      const wrap = $('#tabs'); wrap.innerHTML='';
+      tabs.forEach(t=>{
+        const b = document.createElement('button');
+        b.className = 'px-3 py-2 rounded-lg text-sm hover:bg-white/10 ' + (state.active===t.id ? 'bg-white/10 border border-white/20' : '');
+        b.textContent = t.label; b.dataset.view = t.id;
+        wrap.append(b);
+      });
+      // Adjust active
+      const validIds = tabs.map(t=>t.id);
+      if(!validIds.includes(state.active)){ state.active = tabs[0].id; }
+      showView(state.active);
+    }
+
+    function navigate(viewId){ state.active = viewId; setRole(state.role); }
+
+    function showView(id){
+      $all('main section[id^="view-"]').forEach(s => s.classList.add('hidden'));
+      const v = document.getElementById('view-'+id);
+      if(v) v.classList.remove('hidden');
+      // Render per view
+      if(id==='home') updateOverallProgress();
+      if(id==='booking') renderCenters('', '');
+      if(id==='patient') renderPatient();
+      if(id==='centers') renderCentersGrid();
+      if(id==='doctor') { renderDoctor(); renderPlans(); }
+      if(id==='pa') { renderPA(); }
+      if(id==='admin') { refreshAdmin(); renderAnnouncements(); }
+      if(id==='feedback') renderFeedback();
+      if(id==='reports') renderDocs();
+      if(id==='schedule') renderSchedule();
+      if(id==='followup') renderFollowups();
+    }
+
+    function centerName(id){ return centers.find(c=>c.id===id)?.name || 'Unknown'; }
+    function therapistName(id){ return therapists.find(t=>t.id===id)?.name || 'Unknown'; }
+
+    // Renderers
+    function renderCenters(city, therapy){
+      const grid = $('#centerResults'); grid.innerHTML='';
+      centers.filter(c=>{
+        const okCity = city ? c.city.toLowerCase().includes(city.toLowerCase()) : true;
+        const okTh = therapy ? c.therapies.includes(therapy) : true;
+        return okCity && okTh;
+      }).forEach(c=>{
+        const card = document.createElement('div');
+        card.className='glass gold-line rounded-xl p-4';
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h4 class="font-semibold">${c.name}</h4>
+              <p class="text-sm text-white/80">${c.city} • ⭐ ${c.rating}</p>
+              <p class="text-xs text-white/70 mt-1">Therapies: ${c.therapies.join(', ')}</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="px-3 py-1 rounded-lg bg-white/10 border border-white/20 hover:bg-white/15" data-view="${c.id}">View</button>
+              <button class="px-3 py-1 rounded-lg bg-gold btn-gold text-ink font-semibold" data-book="${c.id}">Book</button>
+            </div>
+          </div>
+        `;
+        grid.append(card);
+      });
+      grid.addEventListener('click', e=>{
+        const v = e.target.closest('button[data-view]'); const b = e.target.closest('button[data-book]');
+        if(v){ openCenterModal(v.dataset.view); }
+        if(b){ $('#bfCenter').value = b.dataset.book; navigate('booking'); }
+      }, { once:true });
+    }
+
+    function openCenterModal(id){
+      const c = centers.find(x=>x.id===id); if(!c) return;
+      $('#modalTitle').textContent = c.name;
+      $('#modalBody').innerHTML = `
+        <p class="text-white/85"><span class="opacity-75">City:</span> ${c.city}</p>
+        <p class="text-white/85"><span class="opacity-75">Phone:</span> ${c.phone}</p>
+        <p class="text-white/85"><span class="opacity-75">Rating:</span> ⭐ ${c.rating}</p>
+        <p class="text-white/85"><span class="opacity-75">Therapies:</span> ${c.therapies.join(', ')}</p>
+        <button id="centerBook" class="mt-3 px-4 py-2 rounded-lg bg-gold btn-gold text-ink font-semibold shadow-gold">Book here</button>
+      `;
+      const m = $('#modal'); m.classList.remove('hidden'); m.classList.add('flex');
+      $('#centerBook').addEventListener('click', ()=>{ $('#bfCenter').value = id; closeModal(); navigate('booking'); });
+    }
+    function closeModal(){ const m = $('#modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+
+    function openPay(e){ e?.preventDefault(); const m = $('#payModal'); m.classList.remove('hidden'); m.classList.add('flex'); }
+    function closePay(){ const m = $('#payModal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+
+    function renderCentersGrid(){
+      const grid = $('#centersGrid'); grid.innerHTML='';
+      centers.forEach(c=>{
+        const card = document.createElement('div');
+        card.className='glass gold-line rounded-xl p-4 flex flex-col';
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <h4 class="font-semibold">${c.name}</h4>
+            <span class="text-xs px-2 py-0.5 rounded-full glass gold-line">⭐ ${c.rating}</span>
+          </div>
+          <p class="mt-1 text-sm text-white/80">${c.city}</p>
+          <p class="mt-1 text-xs text-white/70">Therapies: ${c.therapies.slice(0,3).join(', ')}${c.therapies.length>3?'…':''}</p>
+          <div class="mt-3 flex gap-2">
+            <button class="px-3 py-1 rounded-lg bg-white/10 border border-white/20 hover:bg-white/15" data-view="${c.id}">Details</button>
+            <button class="px-3 py-1 rounded-lg bg-gold btn-gold text-ink font-semibold" data-book="${c.id}">Book</button>
+          </div>
+        `;
+        grid.append(card);
+      });
+      grid.addEventListener('click', e=>{
+        const v = e.target.closest('button[data-view]'); const b = e.target.closest('button[data-book]');
+        if(v){ openCenterModal(v.dataset.view); }
+        if(b){ $('#bfCenter').value = b.dataset.book; navigate('booking'); }
+      }, { once:true });
+    }
+
+    function renderPatient(){
+      const name = $('#pdName').value.trim();
+      // Upcoming
+      const list = $('#pdUpcoming'); list.innerHTML='';
+      const mine = bookings.filter(b=>!name || b.patient.toLowerCase()===name.toLowerCase()).sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
+      mine.slice(0,5).forEach(b=>{
+        const li = document.createElement('li');
+        li.className='flex items-center justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.innerHTML = `<span>${b.date} • ${b.time} — ${b.therapy} @ ${centerName(b.center)}</span>
+                        <span class="text-xs px-2 py-0.5 rounded-full ${b.status==='completed'?'bg-forest-600':'bg-white/10 border border-white/20'}">${b.status}</span>`;
+        list.append(li);
+      });
+      // Progress
+      const total = mine.length || 1;
+      const done = mine.filter(b=>b.status==='completed').length;
+      const pct = Math.round(done/total*100);
+      const circumference = 2*Math.PI*48;
+      $('#pdProgressArc').setAttribute('stroke-dasharray', `${(pct/100)*circumference} ${circumference}`);
+      $('#pdProgressNum').textContent = `${pct}%`;
+
+      // Feedback select and list
+      const sel = $('#fbBooking'); sel.innerHTML='<option value="">Select booking</option>';
+      mine.forEach(b=> sel.append(new Option(`${b.date} ${b.time} • ${b.therapy}`, b.id)));
+      const fbList = $('#pdFeedbacks'); fbList.innerHTML='';
+      feedbacks.filter(f=>!name || f.patient.toLowerCase()===name.toLowerCase()).forEach(f=>{
+        const li = document.createElement('li');
+        li.className='bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.textContent = `⭐ ${f.rating} — ${f.text || 'No comment'}`;
+        fbList.append(li);
+      });
+    }
+
+    function renderDoctor(){
+      const doc = $('#docSelect').value || therapists[0].id;
+      const ul = $('#docSchedule'); ul.innerHTML='';
+      bookings.filter(b=>b.therapist===doc).sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time)).forEach(b=>{
+        const li = document.createElement('li');
+        li.className='flex items-center justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.innerHTML = `<div>
+          <p>${b.date} • ${b.time} — ${b.patient} (${b.therapy})</p>
+          <p class="text-xs text-white/70">${centerName(b.center)}</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button data-done="${b.id}" class="px-3 py-1 rounded bg-white/10 border border-white/20 hover:bg-white/15 text-xs">Mark Done</button>
+        </div>`;
+        ul.append(li);
+      });
+      ul.addEventListener('click', e=>{
+        const d = e.target.closest('button[data-done]'); if(!d) return;
+        const id = d.dataset.done; const b = bookings.find(x=>x.id===id); if(!b) return;
+        b.status='completed'; renderDoctor(); renderPatient(); refreshAdmin(); showToast('Marked completed');
+      }, { once:true });
+
+      // Plan booking select
+      const sel = $('#planBooking'); sel.innerHTML='';
+      bookings.filter(b=>b.therapist===doc).forEach(b=> sel.append(new Option(`${b.date} ${b.time} • ${b.patient}`, b.id)));
+    }
+
+    function renderPlans(){
+      const ul = $('#planList'); ul.innerHTML='';
+      plans.slice(0,5).forEach(p=>{
+        const li = document.createElement('li');
+        li.className='bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.textContent = `${p.patient}: ${p.notes} (${p.at})`;
+        ul.append(li);
+      });
+    }
+
+    function renderPA(){
+      const ul = $('#paList'); ul.innerHTML='';
+      bookings.slice().sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time)).forEach(b=>{
+        const li = document.createElement('li');
+        li.className='flex items-center justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.innerHTML = `<span>${b.date} • ${b.time} — ${b.patient} (${b.therapy}) @ ${centerName(b.center)}</span>`;
+        ul.append(li);
+      });
+      // reschedule select
+      const sel = $('#resBooking'); sel.innerHTML=''; bookings.forEach(b=> sel.append(new Option(`${b.date} ${b.time} • ${b.patient}`, b.id)));
+    }
+
+    function refreshAdmin(){
+      $('#adBookings').textContent = bookings.length;
+      $('#adPatients').textContent = new Set(bookings.map(b=>b.patient)).size;
+      const avg = feedbacks.length? (feedbacks.reduce((a,b)=>a+b.rating,0)/feedbacks.length).toFixed(1) : '0.0';
+      $('#adRating').textContent = avg;
+      // Chart
+      const counts = therapies.map(t => bookings.filter(b=>b.therapy===t).length);
+      const max = Math.max(1, ...counts);
+      const chart = $('#adChart'); chart.innerHTML='';
+      const labels = $('#adChartLabels'); labels.innerHTML='';
+      counts.forEach((v,i)=>{
+        const h = Math.round((v/max)*100);
+        const bar = document.createElement('div');
+        bar.className='w-full bg-gold rounded-t-lg shadow-gold';
+        bar.style.height = Math.max(6, h) + '%';
+        bar.title = `${therapies[i]}: ${v}`;
+        chart.append(bar);
+        const lbl = document.createElement('div');
+        lbl.textContent = therapies[i]; labels.append(lbl);
+      });
+    }
+    function renderAnnouncements(){
+      const ul = $('#annList'); ul.innerHTML='';
+      announcements.slice(0,6).forEach(a=>{
+        const li = document.createElement('li');
+        li.className='bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.innerHTML = `<p class="font-semibold">${a.title}</p><p class="text-xs text-white/70">${a.at}</p><p class="text-sm mt-1">${a.body}</p>`;
+        ul.append(li);
+      });
+    }
+
+    function renderFeedback(){
+      const ul = $('#fbList'); ul.innerHTML='';
+      feedbacks.forEach(f=>{
+        const b = bookings.find(b=>b.id===f.booking);
+        const li = document.createElement('li');
+        li.className='flex items-start justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        const warn = f.rating<=2 ? '<span class="ml-2 text-xs text-rose-300">(alert)</span>' : '';
+        li.innerHTML = `<div><p>⭐ ${f.rating} — ${f.text || 'No comment'} ${warn}</p><p class="text-xs text-white/70">By ${f.patient}${b?` • ${b.therapy} @ ${centerName(b.center)}`:''}</p></div>`;
+        ul.append(li);
+      });
+    }
+
+    function renderDocs(){
+      const ul = $('#docList'); ul.innerHTML='';
+      documents.slice(0,10).forEach(d=>{
+        const li = document.createElement('li');
+        li.className='flex items-center justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.innerHTML = `<div><p>${d.title} <span class="text-xs opacity-80">(${d.type})</span></p><p class="text-xs text-white/70">${d.patient} • ${d.fileName} • ${d.at}</p></div>
+                        <button class="px-3 py-1 rounded bg-white/10 border border-white/20 hover:bg-white/15 text-xs" data-view="${d.id}">View</button>`;
+        ul.append(li);
+      });
+      ul.addEventListener('click', (e)=>{
+        const v = e.target.closest('button[data-view]'); if(!v) return;
+        const d = documents.find(x=>x.id===v.dataset.view);
+        $('#modalTitle').textContent = d.title;
+        $('#modalBody').innerHTML = `<p><b>Patient:</b> ${d.patient}</p><p><b>Type:</b> ${d.type}</p><p><b>File:</b> ${d.fileName}</p><p class="text-xs text-white/70">Uploaded: ${d.at}</p>`;
+        const m = $('#modal'); m.classList.remove('hidden'); m.classList.add('flex');
+      }, { once:true });
+    }
+
+    function renderSchedule(){
+      const t = $('#schTherapist').value || therapists[0].id;
+      const date = $('#schDate').value || today(1);
+      const grid = $('#schGrid'); grid.innerHTML='';
+      const dayCol = document.createElement('div');
+      dayCol.className='rounded-xl glass gold-line p-3';
+      dayCol.innerHTML = `<p class="font-semibold mb-2">${date} • ${therapistName(t)}</p>`;
+      // slots 09:00–18:00 each 30 min
+      for(let m=9*60; m<=18*60; m+=30){
+        const time = minsToTime(m);
+        const busy = bookings.some(b=> overlap(b, {therapist:t, date, time}));
+        const row = document.createElement('button');
+        row.className = `w-full text-left px-3 py-2 mb-1 rounded-lg ${busy?'bg-rosewood-800/40 border border-rosewood-500/40 cursor-not-allowed':'bg-white/5 border border-white/10 hover:bg-white/10'} text-sm`;
+        row.textContent = time + (busy?' • Busy':' • Free');
+        if(!busy){
+          row.addEventListener('click', ()=>{
+            // quick book placeholder
+            const patient = prompt('Patient name (demo):', 'Guest');
+            if(!patient) return;
+            const center = therapists.find(x=>x.id===t)?.center || centers[0].id;
+            const therapy = therapies[0];
+            const draft = {id:'b'+Date.now(), patient, therapy, center, therapist:t, date, time, status:'booked'};
+            bookings.push(draft); showToast('Slot booked');
+            renderSchedule(); refreshAll();
+          });
+        }else{
+          row.addEventListener('click', ()=>{
+            const next = nextAvailable(t, date, time);
+            showToast(next ? `Next available: ${next}` : 'No later availability', next?'info':'error');
+          });
+        }
+        dayCol.append(row);
+      }
+      grid.append(dayCol);
+    }
+
+    function dietPlan(dosha, therapy, notes){
+      const base = {
+        Vata: {
+          foods: 'Warm, moist, grounding foods; ghee, soups, stews; sweet/sour/salty tastes.',
+          avoid: 'Cold, dry, raw foods; excess bitter/astringent; stimulants.',
+          routine: 'Early bedtime, gentle yoga, oil massage (Abhyanga) daily.'
+        },
+        Pitta: {
+          foods: 'Cooling foods; cucumber, leafy greens, coconut, milk; sweet/bitter/astringent.',
+          avoid: 'Spicy, sour, fried foods; alcohol; midday heat.',
+          routine: 'Soothing pranayama, evening walks, avoid overexertion.'
+        },
+        Kapha: {
+          foods: 'Light, warming, stimulating; ginger, legumes, steamed veggies; pungent/bitter/astringent.',
+          avoid: 'Heavy, oily, sweet foods; daytime naps.',
+          routine: 'Invigorating exercise, dry brushing, earlier dinners.'
+        }
+      }[dosha] || {};
+      const tips = {
+        Abhyanga: 'Hydrate well; light warm meals; rest after session.',
+        Shirodhara: 'Quiet time post-session; avoid screens; warm herbal tea.',
+        Virechana: 'Follow Samsarjana Krama; start with rice gruel/khichdi.',
+        Basti: 'Light diet; gentle walks; keep warm.',
+        Nasya: 'Steam inhalation; avoid cold exposure.'
+      }[therapy] || '';
+      return `Panchakarma Diet & Lifestyle Plan
+Dosha: ${dosha}
+Therapy: ${therapy}
+
+Foods: ${base.foods || '-'}
+Avoid: ${base.avoid || '-'}
+Daily Routine: ${base.routine || '-'}
+
+Therapy Tip: ${tips}
+Notes: ${notes || '-'}
+`;
+    }
+
+    function renderFollowups(){
+      const ul = $('#fuList'); ul.innerHTML='';
+      followups.forEach(f=>{
+        const li = document.createElement('li');
+        li.className='flex items-center justify-between bg-white/5 border border-white/10 rounded-lg px-3 py-2';
+        li.innerHTML = `<span>${f.date} • ${f.patient}</span>
+                        <button class="px-3 py-1 rounded bg-white/10 border border-white/20 hover:bg-white/15 text-xs" data-done="${f.id}">Done</button>`;
+        ul.append(li);
+      });
+      ul.addEventListener('click', (e)=>{
+        const d = e.target.closest('button[data-done]'); if(!d) return;
+        const id = d.dataset.done; followups = followups.filter(x=>x.id!==id);
+        renderFollowups(); showToast('Follow-up marked done');
+      }, { once:true });
+    }
+
+    function updateOverallProgress(){
+      // Simple heuristic: percentage from various arrays
+      const caps = [5, 3, 4, 3]; // bookings, feedbacks, documents, plans caps
+      const vals = [bookings.length, feedbacks.length, documents.length, plans.length].map((v,i)=> Math.min(1, v/caps[i]));
+      const pct = Math.round((vals.reduce((a,b)=>a+b,0)/caps.length)*100);
+      const rect = $('#overallProgress'); rect.setAttribute('width', 1.68*pct); // 168 * pct/100
+    }
+
+    function refreshAll(){
+      renderCentersGrid();
+      renderPatient();
+      renderDoctor();
+      renderPlans();
+      renderPA();
+      refreshAdmin();
+      renderFeedback();
+      renderDocs();
+      renderSchedule();
+      updateOverallProgress();
+    }
+
+    function seedDemo(){
+      const base = today(1);
+      bookings.push(
+        {id:'b3', patient:'Sita', therapy:'Shirodhara', center:'c3', therapist:'t3', date:base, time:'12:00', status:'booked'},
+        {id:'b4', patient:'Asha', therapy:'Virechana', center:'c2', therapist:'t2', date:base, time:'14:00', status:'booked'}
+      );
+      feedbacks.push({id:'f2', patient:'Ravi', booking:'b2', rating:4, text:'Good care, felt lighter.'});
+      documents.push({id:'d0', patient:'Asha', title:'CBC Report', type:'Blood Test', fileName:'cbc.pdf', at:new Date().toLocaleString()});
+      announcements.push({id:'a0', title:'Summer Detox Camp', body:'Special packages available this month.', at:new Date().toLocaleString()});
+      renderAnnouncements(); refreshAll(); showToast('Demo data seeded');
+    }
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9863faa01290198e',t:'MTc1OTA3MDI0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
